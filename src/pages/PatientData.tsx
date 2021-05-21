@@ -5,8 +5,6 @@ import './PatientData.css';
 import { getAge } from '../helpers/helper';
 export function PatientData(props: any) {
     const [patientData, setPatientData] = useState<any[]>([]);
-    const [avgAge, setAvgAge] = useState<number>(0);
-    const [pediatricPatientCount, setPediatricPatientCount] = useState<number>(0);
 
     const url = 'http://hapi.fhir.org/baseR4/Patient?birthdate=gt1950-01-01&_pretty=true'
     useEffect(() => {
@@ -17,7 +15,6 @@ export function PatientData(props: any) {
                 setPatientData(data.entry)
             });
     }, [])
-    useEffect(() => {
 
     const ageArray: number[] = patientData.map((entry) => {
         console.log(entry)
@@ -30,9 +27,7 @@ export function PatientData(props: any) {
     console.log(ageArray)
     const pediatricPatientCount = ageArray.filter(age=>age<18).length
     const avgAge = ageArray.reduce( ( p:number, c:number ) => p + c, 0 ) / ageArray.length;
-    setPediatricPatientCount(pediatricPatientCount)
-    setAvgAge(avgAge)
-}, [patientData, setAvgAge, setPediatricPatientCount])
+
 
     if (patientData.length > 0) {
         return (
