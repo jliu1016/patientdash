@@ -7,14 +7,7 @@ import {PatientData} from './pages/PatientData'
 function App() {
   return (
     <div className="App">
-      <div>
-        <div></div>
-      </div>
-      <div >
-        <PatientData/>
-
-      </div>
-
+      <PatientData/>
     </div>
   );
 }
