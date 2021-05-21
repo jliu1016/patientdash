@@ -11,22 +11,18 @@ export function PatientData(props: any) {
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data.entry)
                 setPatientData(data.entry)
             });
     }, [])
 
-    const ageArray: number[] = patientData.map((entry) => {
-        console.log(entry)
-        entry = entry.resource
-        if (entry.birthDate) {
+    const ageArray: number[] = patientData.filter(entry => entry.resource.hasOwnProperty('birthDate'))
+        .map((entry) => {
+            entry = entry.resource
             return getAge(new Date(entry.birthDate))
-        }
-        return 0;
-    })
-    console.log(ageArray)
-    const pediatricPatientCount = ageArray.filter(age=>age<18).length
-    const avgAge = ageArray.reduce( ( p:number, c:number ) => p + c, 0 ) / ageArray.length;
+        })
+        
+    const pediatricPatientCount = ageArray.filter(age => age < 18).length
+    const avgAge = ageArray.reduce((p: number, c: number) => p + c, 0) / ageArray.length;
 
 
     if (patientData.length > 0) {

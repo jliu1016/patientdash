@@ -34,8 +34,7 @@ export function PatientTableComponent(props: any) {
             onFilter: (value: any, record: any) => record.age < value
         }
     ];
-    const handleChange = (pagination: any, filters: any, sorter: any) => {
-        console.log('Various parameters', pagination, filters, sorter);
+    const handleChange = (filters: any) => {
         setFilteredInfo(filters)
     };
     return (
