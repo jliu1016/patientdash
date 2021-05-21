@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { PatientTableContainer } from '../containers/PatientTable';
-import { StatsCard } from '../components/StatsCard/StatsCard';
+import { StatsCard } from '../components/StatsCard';
 import './PatientData.css';
 import { getAge } from '../helpers/helper';
+
 export function PatientData(props: any) {
     const [patientData, setPatientData] = useState<any[]>([]);
 
@@ -20,7 +21,7 @@ export function PatientData(props: any) {
             entry = entry.resource
             return getAge(new Date(entry.birthDate))
         })
-        
+
     const pediatricPatientCount = ageArray.filter(age => age < 18).length
     const avgAge = ageArray.reduce((p: number, c: number) => p + c, 0) / ageArray.length;
 
