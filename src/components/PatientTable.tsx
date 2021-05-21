@@ -34,7 +34,8 @@ export function PatientTableComponent(props: any) {
             onFilter: (value: any, record: any) => record.age < value
         }
     ];
-    const handleChange = (filters: any) => {
+    // pagination and sorting are not used but are required to be compatible with antd Table
+    const handleChange = (pagination: any, filters: any, sorter: any) => {
         setFilteredInfo(filters)
     };
     return (
